@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/elliotstokes/react-flickr-viewer.png?branch=master)](https://travis-ci.org/elliotstokes/react-flickr-viewer) 
+
 React Flickr Viewer
 ====================
 
