@@ -106,13 +106,8 @@ export class ImageDetails extends Component {
   }
 }
 
-class DetailsLink extends Component {
-	render() {
-		return (
-			<a style={styles.detailsLink} href={this.props.url} target="_blank">{this.props.children}</a>
-		)
-	}
-}
+const DetailsLink = (props) =>
+	<a style={styles.detailsLink} href={props.url} target="_blank">{props.children}</a>;
 
 
 

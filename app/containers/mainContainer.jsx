@@ -16,16 +16,11 @@ var styles = {
     }
 }
 
-export default class MainContainer extends Component {
-  render() {
-    return (
-      <div style={styles.mainContainer}>
-        <header style={styles.headerContainer}>
-                <h1 style={styles.header}>Flickr Viewer</h1>
-                <Navigation/>
-        </header>
-        {this.props.children}
-      </div>
-    )
-  }
-}
+export const MainContainer = (props) =>
+  <div style={styles.mainContainer}>
+    <header style={styles.headerContainer}>
+      <h1 style={styles.header}>Flickr Viewer</h1>
+      <Navigation/>
+    </header>
+    {props.children}
+  </div>;

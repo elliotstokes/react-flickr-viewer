@@ -49,45 +49,30 @@ var styles = {
  * Loader
  * @description shows a Loader
  **/
-export class Loader extends Component {
-  render() {
-    return (
-      <div className="loader"/>
-    );
-  }
-}
+export const Loader = () => 
+  <div className="loader"/>;
 
 /**
  * Renders an image
  * @description Renders an image ensuring that it remains vertically and horiontally centered
  **/
-export class CenteredImage extends Component {
-  render() {
-    return (
-      <div style={styles.centeredImageContainer}>
-        <img style={styles.centeredImage} src={this.props.image} alt={this.props.alt}/>
-      </div>
-    );
-  }
-}
+export const CenteredImage = (props) =>
+  <div style={styles.centeredImageContainer}>
+    <img style={styles.centeredImage} src={props.image} alt={props.alt}/>
+  </div>;
 
 /**
  * Navigation for spa pages
  **/
-export class Navigation extends Component {
-  render() {
- 		return (
- 			<nav style={styles.navContainer}>
-        <ul style={styles.navLinks}>
-            <li style={styles.navLinkContainer}>
-              <IndexLink style={styles.navLink} activeStyle={styles.activeNavLink} to="/">Viewer</IndexLink>
-            </li>
+export const Navigation = () =>
+	<nav style={styles.navContainer}>
+    <ul style={styles.navLinks}>
+        <li style={styles.navLinkContainer}>
+          <IndexLink style={styles.navLink} activeStyle={styles.activeNavLink} to="/">Viewer</IndexLink>
+        </li>
 
-            <li style={styles.navLinkContainer}>
-              <Link style={styles.navLink} activeStyle={styles.activeNavLink} to="/about">About</Link>
-            </li>
-        </ul>
-      </nav>
- 		);
- 	}
-}
+        <li style={styles.navLinkContainer}>
+          <Link style={styles.navLink} activeStyle={styles.activeNavLink} to="/about">About</Link>
+        </li>
+    </ul>
+  </nav>;

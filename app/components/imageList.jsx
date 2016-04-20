@@ -22,23 +22,15 @@ const styles = {
  * Image List with Loader
  * @description will display a loader when loading and a list of images when not
  **/
-export class ImageListLoader extends Component {
-  render() {
-    return this.props.isLoading ? <Loader/> : <ImageList images={this.props.images}/>;
-  }
-}
+export const ImageListLoader = (props) =>
+  props.isLoading ? <Loader/> : <ImageList images={props.images}/>;
 
 /**
  * Image List Class
  * @description Maintains a list of ImageViews
  * @class
  **/
-export class ImageList extends Component {
-  render() {
-    return (
-      <ul role="nav" style={styles.imageList}>
-        {this.props.images.map((flickrImg, index) => <li className="list-item" style={styles.imageListItem} key={index}><ImageView  details={flickrImg}/></li>)}
-      </ul>
-    );
-  }
-}
+export const ImageList = (props) =>
+  <ul role="nav" style={styles.imageList}>
+    {props.images.map((flickrImg, index) => <li className="list-item" style={styles.imageListItem} key={index}><ImageView  details={flickrImg}/></li>)}
+  </ul>;

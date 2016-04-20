@@ -15,7 +15,7 @@ const styles = {
   }
 }
 
-export default class HomeContainer extends Component {
+export class HomeContainer extends Component {
 
 	constructor(props) {
 		super(props);
