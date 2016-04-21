@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/elliotstokes/react-flickr-viewer.png?branch=master)](https://travis-ci.org/elliotstokes/react-flickr-viewer) 
+[![Build Status](https://travis-ci.org/elliotstokes/react-flickr-viewer.png?branch=master)](https://travis-ci.org/elliotstokes/react-flickr-viewer) [![Coverage Status](https://coveralls.io/repos/github/elliotstokes/react-flickr-viewer/badge.svg?branch=add-coveralls)](https://coveralls.io/github/elliotstokes/react-flickr-viewer?branch=add-coveralls)
 
 React Flickr Viewer
 ====================
