@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {ImageListLoader} from '../components/imageList';
+import {SearchBox} from '../components/searchBox';
 import flickrApi from '../helpers/flickrApi';
 
 const styles = {
@@ -39,6 +40,7 @@ export class HomeContainer extends Component {
   render() {
     return (
     	<section>
+        <SearchBox/>
     		<button style={styles.refreshButton} onClick={this.refreshClicked.bind(this)}>Refresh</button>
     	  <ImageListLoader isLoading={this.state.isLoading} images={this.state.images}/>
     	</section>
