@@ -21,7 +21,6 @@ export class HomeContainer extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {images: [], isLoading: true};
-
 	}
 
 	refreshClicked() {
@@ -40,8 +39,8 @@ export class HomeContainer extends Component {
   render() {
     return (
     	<section>
-        <SearchBox/>
-    		<button style={styles.refreshButton} onClick={this.refreshClicked.bind(this)}>Refresh</button>
+        <SearchBox onSearch={e => alert("searched")}/>
+    		<button style={styles.refreshButton} onClick={e => this.refreshClicked()}>Refresh</button>
     	  <ImageListLoader isLoading={this.state.isLoading} images={this.state.images}/>
     	</section>
     )

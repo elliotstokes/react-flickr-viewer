@@ -5,7 +5,10 @@ export class SearchBox extends Component {
     return (
       <section>
         <input type="text"/>
-        <button>Search</button>
+        <button onClick={e => {
+          e.preventDefault();
+          if (this.props.onSearch) this.props.onSearch();
+        }}>Search</button>
       </section>
     );
   }
