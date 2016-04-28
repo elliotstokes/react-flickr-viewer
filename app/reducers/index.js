@@ -14,4 +14,4 @@ const rootReducer = combineReducers({
   selectedImages
 });
 
-export default rootReducer
+export default rootReducer;
