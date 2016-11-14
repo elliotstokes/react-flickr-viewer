@@ -1,7 +1,10 @@
-import React, {Component} from 'react';
-import {TagList} from './tags';
-import {CenteredImage} from './utils';
+// @flow
+
+import React, { Component } from 'react';
+import { TagList } from './tags';
+import { CenteredImage } from './utils';
 import dateFormatter from '../helpers/dateFormatter';
+import type { Detail } from '../helpers/flickrApi';
 
 const styles = {
   imageDetailsHeader: {
@@ -28,36 +31,46 @@ const styles = {
   },
   detailsLink: {
   	'fontWeight': 700,
-  	'color': '#000' 
+  	'color': '#000'
   }
 }
 
+type Props = {
+  details: Detail
+}
+
+type State = {
+  hovered: bool
+}
 
 /**
  * Component used to show a single Flickr Image and Metadata
  **/
 export class ImageView extends Component {
 
-  constructor(props) {
+  props: Props;
+  state: State;
+
+  constructor(props: Props) {
     super(props);
     this.state = {hovered:false};
   }
 
-  moveOver(isOver) {
+  moveOver(isOver: bool) {
     this.setState({hovered:isOver});
   }
 
   render() {
     const style = Object.assign({}, styles.imageViewContainer, this.state.hovered ? {'backgroundColor' : '#E6E6E6'} : {});
     return (
-      <section style={style} onMouseOver={this.moveOver.bind(this, true)} onMouseOut={this.moveOver.bind(this, false)}>
-        <CenteredImage image={this.props.details.media.m} alt={this.props.details.title}/>
+      <section style={style} onMouseOver={ this.moveOver.bind(this, true) } onMouseOut={ this.moveOver.bind(this, false) }>
+        <CenteredImage src={ this.props.details.media.m } alt={ this.props.details.title }/>
         <ImageDetails details={this.props.details}></ImageDetails>
-        {function(){
+        {function() {
           if (this.props.details.tags && this.props.details.tags.trim().length > 0) {
             return (
-              <div style={styles.tagListContainer}>
-                <TagList tags={this.props.details.tags}/>
+              <div style={ styles.tagListContainer }>
+                <TagList tags={ this.props.details.tags }/>
               </div>
             );
           }
@@ -71,22 +84,23 @@ export class ImageView extends Component {
  * Renders the Metadata associated with a Flickr Image
  **/
 export class ImageDetails extends Component {
-  
-  getUsernameFromDetails(details) {
-    return details.author.match(/\(([^\)]+)\)/)[1];
+
+  getUsernameFromDetails(details: Detail) {
+    let match = details.author.match(/\(([^\)]+)\)/);
+    return match && match.length > 1 ? match[1] : 'Unknown'
   }
 
-  getTitleFromDetails(details) {
+  getTitleFromDetails(details: Detail) {
     return (details.title && details.title.trim().length > 0) ? details.title : "Unknown";
   }
 
-  getDescriptionFromDetails(details) {
+  getDescriptionFromDetails(details: Detail) {
     const takenDate = dateFormatter.formatLongDate(details.date_taken);
     const publishedDate = dateFormatter.formatLongDate(details.published);
     return `Image taken on ${takenDate} and published on ${publishedDate}.`;
   }
 
-  getProfileUrlFromDetails(details) {
+  getProfileUrlFromDetails(details: Detail) {
   	return 'https://www.flickr.com/people/' + details.author_id;
   }
 
@@ -94,20 +108,23 @@ export class ImageDetails extends Component {
     return (
       <aside>
         <h2 style={styles.imageDetailsHeader}>
-          <DetailsLink url={this.props.details.link}>{this.getTitleFromDetails(this.props.details)}</DetailsLink>
+          <DetailsLink url={ this.props.details.link }>{ this.getTitleFromDetails(this.props.details) }</DetailsLink>
           &nbsp;by&nbsp;
-          <DetailsLink url={this.getProfileUrlFromDetails(this.props.details)}>{this.getUsernameFromDetails(this.props.details)}</DetailsLink>
+          <DetailsLink url={ this.getProfileUrlFromDetails(this.props.details) }>{ this.getUsernameFromDetails(this.props.details) }</DetailsLink>
         </h2>
         <p style={styles.imageDetailsParagraph}>
-          {this.getDescriptionFromDetails(this.props.details)}
+          { this.getDescriptionFromDetails(this.props.details) }
         </p>
       </aside>
     );
   }
 }
 
-const DetailsLink = (props) =>
-	<a style={styles.detailsLink} href={props.url} target="_blank">{props.children}</a>;
+type LinkProps = {
+  children?: Element<any>,
+  url: string
+}
 
-
-
+const DetailsLink = ({ url, children } : LinkProps) => (
+	<a style={ styles.detailsLink } href={ url } target="_blank">{ children }</a>
+);

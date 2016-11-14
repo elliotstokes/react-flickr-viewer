@@ -1,6 +1,9 @@
-import React, {Component} from 'react';
-import {ImageListLoader} from '../components/imageList';
+// @flow
+
+import React, { Component } from 'react';
+import { ImageListLoader } from '../components/imageList';
 import flickrApi from '../helpers/flickrApi';
+import type { Detail } from '../helpers/flickrApi';
 
 const styles = {
   refreshButton : {
@@ -15,25 +18,34 @@ const styles = {
   }
 }
 
+type Props = { }
+
+type State = {
+  images: Detail[],
+  isLoading:bool
+}
+
 export class HomeContainer extends Component {
 
-	constructor(props) {
-		super(props);
-		this.state = {images: [], isLoading: true};
+  state: State;
+  props: Props;
 
+	constructor(props: Props) {
+		super(props);
+		this.state = { images: [], isLoading: true };
 	}
 
 	refreshClicked() {
-		this.setState({images: [], isLoading: true});
+		this.setState({ images: [], isLoading: true });
 		this.getImagesFromFlickr();
 	}
 
   getImagesFromFlickr() {
-  	flickrApi.getPublicPhotos().then(images => this.setState({isLoading:false, images: images}));
+  	flickrApi.getPublicPhotos().then(images => this.setState({ isLoading:false, images: images }));
   }
 
   componentDidMount() {
-      this.getImagesFromFlickr();  
+      this.getImagesFromFlickr();
   }
 
   render() {
