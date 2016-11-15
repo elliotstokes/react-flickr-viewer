@@ -1,9 +1,11 @@
+// @flow
+
 import React, {Component} from 'react';
 import {Navigation} from '../components/utils';
 
-var styles = {
+const styles = {
     mainContainer: {
-      'margin': '0 auto', 
+      'margin': '0 auto',
       'maxWidth': '60em'
     },
     headerContainer: {
@@ -16,11 +18,15 @@ var styles = {
     }
 }
 
-export const MainContainer = (props) =>
+type Props = {
+  children: Element<any>
+}
+
+export const MainContainer = ({ children } : Props) =>
   <div style={styles.mainContainer}>
     <header style={styles.headerContainer}>
       <h1 style={styles.header}>Flickr Viewer</h1>
       <Navigation/>
     </header>
-    {props.children}
+    { children }
   </div>;

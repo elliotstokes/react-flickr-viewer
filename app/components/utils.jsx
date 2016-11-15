@@ -1,3 +1,5 @@
+// @flow
+
 import React, {Component} from 'react';
 import {Link, IndexLink} from 'react-router';
 
@@ -49,16 +51,23 @@ var styles = {
  * Loader
  * @description shows a Loader
  **/
-export const Loader = () => 
+export const Loader = () =>
   <div className="loader"/>;
+
+
+type Props = {
+  src: string,
+  alt: string
+}
+
 
 /**
  * Renders an image
  * @description Renders an image ensuring that it remains vertically and horiontally centered
  **/
-export const CenteredImage = (props) =>
+export const CenteredImage = ({src, alt} : Props) =>
   <div style={styles.centeredImageContainer}>
-    <img style={styles.centeredImage} src={props.image} alt={props.alt}/>
+    <img style={styles.centeredImage} src={ src } alt={ alt }/>
   </div>;
 
 /**

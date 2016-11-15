@@ -16,7 +16,7 @@ describe('CenteredImage', () => {
 
   	var renderer = TestUtils.createRenderer();
     renderer.render(
-       <CenteredImage image={image} alt={alt}/>
+       <CenteredImage src={image} alt={alt}/>
     );
     const result = renderer.getRenderOutput();
 

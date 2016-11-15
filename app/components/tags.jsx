@@ -1,3 +1,5 @@
+// @flow
+
 import React, {Component} from 'react';
 
 const styles = {
@@ -27,7 +29,7 @@ const styles = {
  **/
 export class TagList extends Component {
 
-  generateTagTitle(tag) {
+  generateTagTitle(tag: string) {
     return tag
       .replace(/:copyright:/i, '\u00A9')
       .replace(/uploaded:by=/i, '\u2191');

@@ -1,3 +1,5 @@
+// @flow
+
 import React from 'react';
 import { Route, Router, hashHistory, IndexRoute } from 'react-router';
 import {MainContainer} from '../containers/mainContainer';

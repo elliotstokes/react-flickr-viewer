@@ -22,9 +22,9 @@ describe('Image View', () => {
        <ImageView details={details}/>
     );
     const result = renderer.getRenderOutput();
-    
+
     expect(result.type).toBe('section');
-    expect(result.props.children[0].props).toEqual({ image: 'http://link.to/image.jpg', alt: 'title' });
+    expect(result.props.children[0].props).toEqual({ src: 'http://link.to/image.jpg', alt: 'title' });
     expect(result.props.children[1].props.details).toEqual(details);
   });
 
